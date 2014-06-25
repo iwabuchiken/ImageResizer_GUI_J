@@ -1,0 +1,243 @@
+package ir.main;
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.wb.swt.SWTResourceManager;
+
+public class MainWindow {
+
+	protected Shell shell;
+	private Text text;
+	
+	////////////////////////////////
+
+	// Views
+
+	////////////////////////////////
+	Button btnSource;
+	Button btnDest;
+	
+	/**
+	 * Launch the application.
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		try {
+			MainWindow window = new MainWindow();
+			window.open();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Open the window.
+	 */
+	public void open() {
+		Display display = Display.getDefault();
+		createContents();
+		shell.open();
+		shell.layout();
+		while (!shell.isDisposed()) {
+			if (!display.readAndDispatch()) {
+				display.sleep();
+			}
+		}
+	}
+
+	/**
+	 * Create contents of the window.
+	 */
+	protected void 
+	createContents() {
+		shell = new Shell();
+		shell.setSize(589, 543);
+		shell.setText("SWT Application");
+
+//		new Text(shell, SWT.BORDER);
+		
+//		GuiBuilder gb = new GuiBuilder();
+//		
+//		gb.createContents__Buttons(shell);
+		createContents__Buttons(shell);
+		createContents__Menues(shell);
+		
+		////////////////////////////////
+
+		// labels
+
+		////////////////////////////////
+		Label lblNewLabel = new Label(shell, SWT.NONE);
+		lblNewLabel.setBackground(
+						SWTResourceManager.getColor(
+								SWT.COLOR_TITLE_BACKGROUND_GRADIENT));
+		lblNewLabel.setBounds(65, 39, 392, 37);
+		
+		btnSource = new Button(shell, SWT.NONE);
+
+		btnSource.setBounds(422, 106, 115, 37);
+		btnSource.setText("Source");
+		
+		text = new Text(shell, SWT.BORDER);
+		text.setBackground(SWTResourceManager.getColor(SWT.COLOR_YELLOW));
+		text.setBounds(65, 191, 392, 37);
+		
+		btnDest = new Button(shell, SWT.NONE);
+		btnDest.setBounds(422, 260, 115, 37);
+		btnDest.setText("Dest");
+		
+		createContents__SetListeners();
+		
+	}//createContents()
+
+	private void 
+	createContents__SetListeners() {
+		// TODO Auto-generated method stub
+		////////////////////////////////
+
+		// Button: source
+
+		////////////////////////////////
+		btnSource.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+				System.exit(0);
+				
+			}
+		});
+
+		////////////////////////////////
+
+		// Button: dest
+
+		////////////////////////////////
+		btnDest.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+				System.exit(0);
+				
+			}
+		});
+
+	}//createContents__SetListeners()
+
+	public static void 
+	createContents__Buttons(Shell shlSwtApplication) {
+		// TODO Auto-generated method stub
+		
+		
+		
+		_createContents__Buttons_Quit(shlSwtApplication);
+		
+		_createContents__Buttons_Execute(shlSwtApplication);
+		
+//		_createContents__Buttons_Execute();
+		
+	}//_createContents__Buttons()
+
+	private static void 
+	_createContents__Buttons_Execute
+	(Shell shlSwtApplication) {
+		// TODO Auto-generated method stub
+		Button btnExecute = new Button(shlSwtApplication, SWT.NONE);
+		btnExecute.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+//				Ops.open_ImageWindow();
+				
+			}
+		});
+		btnExecute.setBounds(305, 411, 115, 37);
+		btnExecute.setText("Execute");
+
+	}//_createContents__Buttons_Execute
+
+	private static void 
+	_createContents__Buttons_Quit(Shell shlSwtApplication) {
+		// TODO Auto-generated method stub
+		Button btnQuit = new Button(shlSwtApplication, SWT.NONE);
+		btnQuit.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+				System.exit(0);
+				
+			}
+		});
+		btnQuit.setBounds(442, 411, 115, 37);
+		btnQuit.setText("Quit");
+
+	}//_createContents__Buttons_Quit()
+
+	public static void 
+	createContents__Menues(Shell shlSwtApplication) {
+		// TODO Auto-generated method stub
+		Menu menu = new Menu(shlSwtApplication, SWT.BAR);
+		shlSwtApplication.setMenuBar(menu);
+		
+		MenuItem mntmFile = new MenuItem(menu, SWT.CASCADE);
+		mntmFile.setText("File");
+		
+		Menu menu_3 = new Menu(mntmFile);
+		mntmFile.setMenu(menu_3);
+		
+		MenuItem mntmQuit_1 = new MenuItem(menu_3, SWT.NONE);
+		mntmQuit_1.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+				System.exit(0);
+				
+			}
+		});
+		mntmQuit_1.setText("Quit");
+		
+		MenuItem mntmOthers = new MenuItem(menu, SWT.CASCADE);
+		mntmOthers.setText("Others");
+		
+		Menu menu_2 = new Menu(mntmOthers);
+		mntmOthers.setMenu(menu_2);
+		
+		MenuItem mntmQuit = new MenuItem(menu_2, SWT.NONE);
+		mntmQuit.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+				System.exit(0);
+				
+			}
+		});
+		mntmQuit.setText("Quit");
+		
+		Menu menu_1 = new Menu(shlSwtApplication);
+		shlSwtApplication.setMenu(menu_1);
+		
+	}//_createContents_Menues()
+
+
+	public class GuiBuilder {
+		
+		public void 
+		createContents__Buttons(Shell shlSwtApplication) {
+			// TODO Auto-generated method stub
+			
+			_createContents__Buttons_Quit(shlSwtApplication);
+			
+			_createContents__Buttons_Execute(shlSwtApplication);
+			
+//			_createContents__Buttons_Execute();
+			
+		}//_createContents__Buttons()
+	}
+}
